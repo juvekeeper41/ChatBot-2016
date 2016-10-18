@@ -140,5 +140,19 @@ public class Chatbot
 	{
 
 	}
+	public boolean quitChecker(String currentInput)
+	{
+		boolean checker = false;
 
+	if(currentInput == "exit")
+	{
+		checker = false;
+	}
+	
+	if(currentInput == "quit")
+	{
+		checker = true;
+	}
+	return checker;
+	}
 }
