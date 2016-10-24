@@ -24,18 +24,53 @@ public class Chatbot
 		politicalTopicList = new ArrayList<String>();
 		content = new String("");
 		this.userName = userName;
-		
+		this.content = "something nifty";
 		
 	}
 
-	private void buildMemesList(ArrayList<String> memeList)
+	private void buildMemesList(ArrayList<String> memesList)
 	{
-		this.memesList = memeList;
+		memesList.add("doge");
+		memesList.add("cute animals");
+		memesList.add("dat boi");
+		memesList.add("grumpy cat");
+		memesList.add("willy wonka");
+		memesList.add("harambe");
+		memesList.add("john cena");
+		memesList.add("arthur");
+		memesList.add("kenneth bone");
+		memesList.add("spongegar");
+		memesList.add("hillary clinton");
+		memesList.add("donald trump");
+		memesList.add("bad luck brian");
+		memesList.add("will ferrell");
+		memesList.add("sheldon");
+		memesList.add("drake");
+		memesList.add("michael jordan");
+		memesList.add("michael phelps");
 	}
 
-	private void buildPoliticalTopicsList(ArrayList<String> politicalTopicList)
+	private void buildPoliticalTopicsList(ArrayList<String> politicalTopicsList)
 	{
-		this.politicalTopicList = politicalTopicList;
+		politicalTopicsList.add("Democrat");
+		politicalTopicsList.add("Republican");
+		politicalTopicsList.add("11/8/16");
+		politicalTopicsList.add("liberal");
+		politicalTopicsList.add("conservative");
+		politicalTopicsList.add("Clinton");
+		politicalTopicsList.add("Trump");
+		politicalTopicsList.add("Kaine");
+		politicalTopicsList.add("Pence");
+		politicalTopicsList.add("Stein");
+		politicalTopicsList.add("Johnson");
+		politicalTopicsList.add("election");
+		politicalTopicsList.add("Gary Johnson");
+		politicalTopicsList.add("democracy");
+		politicalTopicsList.add("republic");
+		politicalTopicsList.add("");
+		politicalTopicsList.add("");
+		politicalTopicsList.add("");
+		politicalTopicsList.add("");
 	}
 
 	/**
@@ -64,9 +99,17 @@ public class Chatbot
 	 *            The supplied String to be checked. * @return Whether it
 	 *            matches the content area.
 	 */
+	
 	public boolean contentChecker(String currentInput)
 	{
-		return false;
+		boolean hasContent = false;
+		
+		if(currentInput.contains(content))
+		{
+			hasContent = true;
+		}
+		
+		return hasContent;
 	}
 
 	/**
