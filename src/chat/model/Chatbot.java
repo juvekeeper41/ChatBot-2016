@@ -28,7 +28,7 @@ public class Chatbot
 		
 	}
 
-	private void buildMemesList(ArrayList<String> memesList)
+	private void buildMemesList()
 	{
 		memesList.add("doge");
 		memesList.add("cute animals");
@@ -50,27 +50,27 @@ public class Chatbot
 		memesList.add("michael phelps");
 	}
 
-	private void buildPoliticalTopicsList(ArrayList<String> politicalTopicsList)
+	private void buildPoliticalTopicsList()
 	{
-		politicalTopicsList.add("Democrat");
-		politicalTopicsList.add("Republican");
-		politicalTopicsList.add("11/8/16");
-		politicalTopicsList.add("liberal");
-		politicalTopicsList.add("conservative");
-		politicalTopicsList.add("Clinton");
-		politicalTopicsList.add("Trump");
-		politicalTopicsList.add("Kaine");
-		politicalTopicsList.add("Pence");
-		politicalTopicsList.add("Stein");
-		politicalTopicsList.add("Johnson");
-		politicalTopicsList.add("election");
-		politicalTopicsList.add("Gary Johnson");
-		politicalTopicsList.add("democracy");
-		politicalTopicsList.add("republic");
-		politicalTopicsList.add("");
-		politicalTopicsList.add("");
-		politicalTopicsList.add("");
-		politicalTopicsList.add("");
+		politicalTopicList.add("Democrat");
+		politicalTopicList.add("Republican");
+		politicalTopicList.add("11/8/16");
+		politicalTopicList.add("liberal");
+		politicalTopicList.add("conservative");
+		politicalTopicList.add("Clinton");
+		politicalTopicList.add("Trump");
+		politicalTopicList.add("Kaine");
+		politicalTopicList.add("Pence");
+		politicalTopicList.add("Stein");
+		politicalTopicList.add("Johnson");
+		politicalTopicList.add("election");
+		politicalTopicList.add("Gary Johnson");
+		politicalTopicList.add("democracy");
+		politicalTopicList.add("republic");
+		politicalTopicList.add("");
+		politicalTopicList.add("");
+		politicalTopicList.add("");
+		politicalTopicList.add("");
 	}
 
 	/**
@@ -123,7 +123,14 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		return false;
+		boolean politicalTopic = false;
+		
+		for(String currentPoliticalTopic : politicalTopicList)
+		{
+			if(currentInput.contains(currentPoliticalTopic))
+			politicalTopic = true;
+		}
+		return politicalTopic;
 	}
 
 	/**
