@@ -11,7 +11,7 @@ public class ChatViewer
 	public ChatViewer()
 	{
 		windowMessage = "This message brought to you by Jake's 'chatbot'! :D";
-		chatIcon = new ImageIcon(getClass().getResource("downloads/chatbot.jpg"));
+		chatIcon = new ImageIcon(getClass().getResource("image/chatbot.jpg"));
 	}
 	
 	public String collectResponse(String displayText)
