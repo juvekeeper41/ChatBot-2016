@@ -30,6 +30,7 @@ public class Chatbot
 
 	private void buildMemesList()
 	{
+		memesList.add("memes");
 		memesList.add("doge");
 		memesList.add("cute animals");
 		memesList.add("dat boi");
