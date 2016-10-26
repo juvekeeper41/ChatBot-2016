@@ -67,10 +67,10 @@ public class Chatbot
 		politicalTopicList.add("Gary Johnson");
 		politicalTopicList.add("democracy");
 		politicalTopicList.add("republic");
-		politicalTopicList.add("");
-		politicalTopicList.add("");
-		politicalTopicList.add("");
-		politicalTopicList.add("");
+		politicalTopicList.add("Ben Carson");
+		politicalTopicList.add("Emails");
+		politicalTopicList.add("Racism");
+		politicalTopicList.add("Wall");
 	}
 
 	/**
@@ -143,7 +143,14 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
-		return false;
+		boolean meme = true;
+		
+		for(String currentMeme : memesList)
+		{
+			if(currentInput.contains(currentMeme))
+			meme = true;
+		}
+		return meme;
 	}
 
 	/**
