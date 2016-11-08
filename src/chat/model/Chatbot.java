@@ -27,6 +27,75 @@ public class Chatbot
 		this.content = "something nifty";
 		
 	}
+	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean mashChecker = false;
+		
+		if(currentInput.contains("S.D.F."))
+		{
+			mashChecker = false;
+		}
+		
+		if(currentInput.contains("derf"))
+		{
+			mashChecker = false;
+		}
+		
+		if(currentInput.contains("sdf"))
+		{
+			mashChecker = true;
+		}
+		
+		if(currentInput.contains("dfg"))
+		{
+			mashChecker = true;
+		}
+		
+		if(currentInput.contains("cvb"))
+		{
+			mashChecker = true;
+		}
+		
+		if(currentInput.contains(",./"))
+		{
+			mashChecker = true;
+		}
+		
+		return mashChecker;
+	}
+	
+	public boolean twitterChecker(String currentInput)
+	{
+		boolean tweetChecker = false;
+		
+		if(currentInput.contains(" "))
+		{
+			tweetChecker = false;
+		}
+		
+		if(currentInput.contains("#dw35 f"))
+		{
+			tweetChecker = true;
+		}
+		
+		if(currentInput.contains(" sdfsd # "))
+		{
+			tweetChecker = false;
+		}
+		
+		if(currentInput.contains("@d4d sretsf "))
+		{
+			tweetChecker = true;
+		}
+		
+		if(currentInput.contains(" sdfsd @ "))
+		{
+			tweetChecker = false;
+		}
+		
+		return tweetChecker;
+	}
 
 	private void buildMemesList()
 	{
@@ -104,8 +173,9 @@ public class Chatbot
 	public boolean contentChecker(String currentInput)
 	{
 		boolean hasContent = false;
-		
-		if(currentInput.contains(content))
+		String tempInput = currentInput.toLowerCase();
+		if (tempInput.contains(content.toLowerCase()));
+		if(currentInput.toLowerCase().contains(content.toLowerCase()))
 		{
 			hasContent = true;
 		}
@@ -202,12 +272,12 @@ public class Chatbot
 	{
 		boolean checker = false;
 
-	if(currentInput == "exit")
+	if(currentInput.equals("exit"))
 	{
 		checker = false;
 	}
 	
-	if(currentInput == "quit")
+	if(currentInput.equals("quit"))
 	{
 		checker = true;
 	}
