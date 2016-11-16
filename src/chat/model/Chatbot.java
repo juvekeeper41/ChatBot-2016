@@ -222,9 +222,7 @@ public class Chatbot
 	public boolean contentChecker(String currentInput)
 	{
 		boolean hasContent = false;
-		String tempInput = currentInput.toLowerCase();
-		if (tempInput.contains(content.toLowerCase()))
-			;
+		
 		if (currentInput.toLowerCase().contains(content.toLowerCase()))
 		{
 			hasContent = true;
@@ -264,7 +262,7 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
-		boolean meme = true;
+		boolean meme = false;
 
 		for (String currentMeme : memesList)
 		{
