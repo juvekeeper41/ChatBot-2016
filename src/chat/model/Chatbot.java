@@ -130,7 +130,7 @@ public class Chatbot
 		hashtagEnd = currentInput.indexOf(" ", hashtagStart + 1);
 		String hashtag = currentInput.toLowerCase().substring(hashtagStart + 1, hashtagEnd);
 		
-		if(!hashtag.equals(" "))
+		if(!hashtag.equals(""))
 		{
 			twitter = true;
 		}
