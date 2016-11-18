@@ -20,12 +20,16 @@ public class Chatbot
 	 */
 	public Chatbot(String userName)
 	{
+		content = new String("Video Games");
 		memesList = new ArrayList<String>();
 		politicalTopicList = new ArrayList<String>();
 		content = new String("");
 		this.userName = userName;
-		this.content = "something nifty";
-
+		this.content = "Video Games";
+		
+		buildMemesList();
+		buildPoliticalTopicsList();
+		
 	}
 
 	public boolean keyboardMashChecker(String currentInput)
@@ -64,7 +68,7 @@ public class Chatbot
 
 		return mashChecker;
 	}
-	
+
 	public boolean inputHTMLChecker(String currentInput)
 	{
 		boolean HTMLChecker = false;
@@ -72,44 +76,54 @@ public class Chatbot
 		int close = -1;
 		int open2 = -1;
 		int close2 = -1;
-		
-		if(currentInput.contains("<P>"))
+		int HREFStart = currentInput.toLowerCase().indexOf("<A HREF=\"".toLowerCase());
+		int HREFEnd = currentInput.indexOf("\"", HREFStart + 9);
+		int HREFCheck = -1;
+
+		if (currentInput.contains("<P>"))
 		{
 			HTMLChecker = true;
 		}
-		
-		if(currentInput.equals("<A HREF=\"sdfs.html\"> </a>"))
+
+		if (currentInput.length() > 9 && HREFStart > -1 && HREFEnd > -1)
 		{
-			HTMLChecker = true;
+			String HREF = currentInput.toLowerCase().substring(HREFStart + 9, HREFEnd);
+			HREFCheck = currentInput.toLowerCase().indexOf("</a>".toLowerCase(), HREFEnd + 1);
+
+			if (!HREF.equals(" ") && HREFCheck > 0)
+			{
+				HTMLChecker = true;
+			}
 		}
-		
-		if(currentInput.contains("<A HREF> </a>"))
-		{
-			HTMLChecker = false;
-		}
-		
-		if(currentInput.contains("<>"))
-		{
-			HTMLChecker = false;
-		}
-		
-		if(currentInput.contains("< >"))
+
+		if (currentInput.contains("<>"))
 		{
 			HTMLChecker = false;
 		}
-		
+
+		if (currentInput.contains("< >"))
+		{
+			HTMLChecker = false;
+		}
+
 		open = currentInput.indexOf("<");
 		close = currentInput.indexOf(">");
-		String tag = currentInput.toLowerCase().substring(open + 1, close);
-		open2 = currentInput.indexOf("<", close + 1);
-		close2 = currentInput.indexOf(">", close + 1);
-		String tag2 = currentInput.toLowerCase().substring(open2 + 1, close2);
-		
-		if(tag2.equals("/"+tag))
+		if (close > -1 && open > -1 && open < close)
 		{
-			HTMLChecker = true;
+			String tag = currentInput.toLowerCase().substring(open + 1, close);
+			open2 = currentInput.indexOf("<", close + 1);
+			close2 = currentInput.indexOf(">", close + 1);
+
+			if (close2 > -1 && open2 > -1 && open2 < close2)
+			{
+				String tag2 = currentInput.toLowerCase().substring(open2 + 1, close2);
+
+				if (tag2.equals("/" + tag))
+				{
+					HTMLChecker = true;
+				}
+			}
 		}
-		
 		return HTMLChecker;
 	}
 
@@ -121,29 +135,46 @@ public class Chatbot
 		int atStart = -1;
 		int atEnd = -1;
 
-		if (currentInput.contains(" "))
+		if (currentInput.equals(" "))
 		{
 			twitter = false;
 		}
-		
+
 		hashtagStart = currentInput.indexOf("#");
-		hashtagEnd = currentInput.indexOf(" ", hashtagStart + 1);
-		String hashtag = currentInput.toLowerCase().substring(hashtagStart + 1, hashtagEnd);
-		
-		if(!hashtag.equals(""))
+
+		if (hashtagStart > -1)
 		{
-			twitter = true;
+			hashtagEnd = currentInput.indexOf(" ", hashtagStart + 1);
+
+			if (hashtagEnd > -1)
+			{
+
+				String hashtag = currentInput.toLowerCase().substring(hashtagStart, hashtagEnd);
+
+				if (!hashtag.equals("#"))
+				{
+					twitter = true;
+				}
+
+			}
+		}
+		atStart = currentInput.indexOf("@");
+		if (atStart > -1)
+		{
+
+			atEnd = currentInput.indexOf(" ", atStart + 1);
+			if (atEnd > -1)
+			{
+
+				String at = currentInput.toLowerCase().substring(atStart, atEnd);
+
+				if (!at.equals("@"))
+				{
+					twitter = true;
+				}
+			}
 		}
 
-		atStart = currentInput.indexOf("@");
-		atEnd = currentInput.indexOf(" ", atStart + 1);
-		String at = currentInput.toLowerCase().substring(atStart + 1, atEnd);
-		
-		if(!at.equals(" "))
-		{
-			twitter = true;
-		}
-		
 		return twitter;
 	}
 
@@ -177,7 +208,9 @@ public class Chatbot
 		politicalTopicList.add("11/8/16");
 		politicalTopicList.add("liberal");
 		politicalTopicList.add("conservative");
+		politicalTopicList.add("Hillary");
 		politicalTopicList.add("Clinton");
+		politicalTopicList.add("Donald");
 		politicalTopicList.add("Trump");
 		politicalTopicList.add("Kaine");
 		politicalTopicList.add("Pence");
@@ -222,7 +255,7 @@ public class Chatbot
 	public boolean contentChecker(String currentInput)
 	{
 		boolean hasContent = false;
-		
+
 		if (currentInput.toLowerCase().contains(content.toLowerCase()))
 		{
 			hasContent = true;
@@ -247,7 +280,9 @@ public class Chatbot
 		for (String currentPoliticalTopic : politicalTopicList)
 		{
 			if (currentInput.contains(currentPoliticalTopic))
+			{
 				politicalTopic = true;
+			}
 		}
 		return politicalTopic;
 	}
@@ -314,7 +349,7 @@ public class Chatbot
 	 */
 	public void setContent(String content)
 	{
-
+		this.content = content;
 	}
 
 	public boolean quitChecker(String currentInput)

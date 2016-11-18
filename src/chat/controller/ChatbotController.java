@@ -6,6 +6,7 @@ import chat.view.ChatFrame;
 
 public class ChatbotController
 {
+	private String randomTopicChecker;
 	private Chatbot stupidBot;
 	private ChatViewer display;
 	private ChatFrame appFrame;
@@ -38,13 +39,45 @@ public class ChatbotController
 					}
 					if(stupidBot.contentChecker(input))
 					{
-						checkedInput += "\nYou know my secret topic\n";
+						checkedInput += "\nYou know my secret topic!\n";
+					}
+					
+					if(stupidBot.inputHTMLChecker(input))
+					{
+						checkedInput += "\nYou are typing in HTML!\n";
+					}
+					
+					if(stupidBot.politicalTopicChecker(input))
+					{
+						checkedInput += "\nYou are talking about political topics!\n";
+					}
+					
+					if(stupidBot.quitChecker(input))
+					{
+						checkedInput += "\nYou have to go? Until next time! :)\n";
+					}
+					
+					if(stupidBot.twitterChecker(input))
+					{
+						checkedInput += "\nYou are talking about Twitter!\n";
+					}
+					
+					if(stupidBot.keyboardMashChecker(input))
+					{
+						checkedInput += "\nYou are just mashing keys.\n";
 					}
 					
 					if(!stupidBot.lengthChecker(checkedInput))
 					{
 						checkedInput = "I have idea what you mean about " + input;
 					}
+					
+					int canBeRandom = (int) (Math.random() * 7);
+					if(canBeRandom % 7 == 0)
+					{
+						checkedInput += randomTopicChecker();
+					}
+					
 					return checkedInput;
 	}
 				
@@ -56,6 +89,42 @@ public class ChatbotController
 				public Chatbot getChatbot()
 				{
 					return stupidBot;
+				}
+				
+				private String randomTopicChecker()
+				{
+					String randomTopic = "";
+					int random = (int) (Math.random() * 7);
+					
+					switch(random)
+					{
+					case 0:
+						randomTopic = ". It's time for some industrial!";
+						break;
+					case 1:
+						randomTopic = ". Reading novels is a great way to spend your time!";
+						break;
+					case 2:
+						randomTopic = ". I love to play sports.";
+						break;
+					case 3:
+						randomTopic = ". Java is awesome!";
+						break;
+					case 4:
+						randomTopic = ". Did you hear about the new iPhone?";
+						break;
+					case 5:
+						randomTopic = ". Might you bring me some Sriracha?";
+						break;
+					case 6:
+						randomTopic = ". Do/Did you enjoy school?";
+						break;
+					default:
+						randomTopic = ". This can't be happening!";
+						break;
+					}
+					
+					return randomTopic;
 				}
 
 
