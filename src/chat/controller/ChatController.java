@@ -4,13 +4,13 @@ import chat.model.Chatbot;
 import chat.view.ChatViewer;
 import chat.view.ChatFrame;
 
-public class ChatbotController
+public class ChatController
 {
 	private String randomTopicChecker;
 	private Chatbot stupidBot;
 	private ChatViewer display;
 	private ChatFrame appFrame;
-	public ChatbotController()
+	public ChatController()
 	{
 		stupidBot = new Chatbot("Unintelligent Chat Machine");
 		appFrame = new ChatFrame(this);
@@ -32,54 +32,61 @@ public class ChatbotController
 				public String useChatbotCheckers(String input)
 				{
 					String checkedInput = "";
-					
-					if(stupidBot.memeChecker(input))
+					if(!stupidBot.quitChecker(input))
 					{
-						checkedInput += "\nYou like memes!\n";
-					}
-					if(stupidBot.contentChecker(input))
-					{
-						checkedInput += "\nYou know my secret topic!\n";
-					}
 					
-					if(stupidBot.inputHTMLChecker(input))
-					{
-						checkedInput += "\nYou are typing in HTML!\n";
+						if(stupidBot.memeChecker(input))
+						{
+							checkedInput += "\nYou like memes!\n";
+						}
+						if(stupidBot.contentChecker(input))
+						{
+							checkedInput += "\nYou know my secret topic!\n";
+						}
+						
+						if(stupidBot.inputHTMLChecker(input))
+						{
+							checkedInput += "\nYou are typing in HTML!\n";
+						}
+						
+						if(stupidBot.politicalTopicChecker(input))
+						{
+							checkedInput += "\nYou are talking about political topics!\n";
+						}
+						
+						if(stupidBot.quitChecker(input))
+						{
+							checkedInput += "\nYou have to go? Until next time! :)\n";
+						}
+						
+						if(stupidBot.twitterChecker(input))
+						{
+							checkedInput += "\nYou are talking about Twitter!\n";
+						}
+						
+						if(stupidBot.keyboardMashChecker(input))
+						{
+							checkedInput += "\nYou are just mashing keys.\n";
+						}
+						
+						if(!stupidBot.lengthChecker(checkedInput))
+						{
+							checkedInput = "I have idea what you mean about " + input;
+						}
+						
+						int canBeRandom = (int) (Math.random() * 2);
+						if(canBeRandom % 2 == 0)
+						{
+							checkedInput += randomTopicGenerator();
+						}
 					}
-					
-					if(stupidBot.politicalTopicChecker(input))
+					else
 					{
-						checkedInput += "\nYou are talking about political topics!\n";
+						display.displayMessage("Thanks for chatting! Talk to you soon.");
+						System.exit(0);
 					}
-					
-					if(stupidBot.quitChecker(input))
-					{
-						checkedInput += "\nYou have to go? Until next time! :)\n";
-					}
-					
-					if(stupidBot.twitterChecker(input))
-					{
-						checkedInput += "\nYou are talking about Twitter!\n";
-					}
-					
-					if(stupidBot.keyboardMashChecker(input))
-					{
-						checkedInput += "\nYou are just mashing keys.\n";
-					}
-					
-					if(!stupidBot.lengthChecker(checkedInput))
-					{
-						checkedInput = "I have idea what you mean about " + input;
-					}
-					
-					int canBeRandom = (int) (Math.random() * 7);
-					if(canBeRandom % 7 == 0)
-					{
-						checkedInput += randomTopicChecker();
-					}
-					
 					return checkedInput;
-	}
+				}
 				
 				public ChatFrame getBaseFrame()
 				{
@@ -91,7 +98,7 @@ public class ChatbotController
 					return stupidBot;
 				}
 				
-				private String randomTopicChecker()
+				private String randomTopicGenerator()
 				{
 					String randomTopic = "";
 					int random = (int) (Math.random() * 7);

@@ -1,20 +1,21 @@
 package chat.view;
 
 import javax.swing.*;
-import chat.controller.ChatbotController;
+import chat.controller.ChatController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ChatPanel extends JPanel
 {
-	private ChatbotController baseController;
+	private ChatController baseController;
 	private SpringLayout baseLayout;
 	private JTextArea chatDisplay;
 	private JTextField chatField;
 	private JButton chatButton;
+	private JLabel chatTitle;
 	
-	public ChatPanel(ChatbotController baseController)
+	public ChatPanel(ChatController baseController)
 	{
 		super();
 		this.baseController = baseController;
@@ -22,6 +23,7 @@ public class ChatPanel extends JPanel
 		chatDisplay = new JTextArea(5, 25);
 		chatField = new JTextField(25);
 		chatButton = new JButton("Chat with the bot");
+		chatTitle = new JLabel("Jake's Chatbot!");
 		
 		setupChatDisplay();
 		setupPanel();
@@ -44,6 +46,7 @@ public class ChatPanel extends JPanel
 		this.add(chatButton);
 		this.add(chatDisplay);
 		this.add(chatField);
+		this.add(chatTitle);
 	}
 	
 	private void setupLayout()
