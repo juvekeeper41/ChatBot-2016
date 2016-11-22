@@ -30,6 +30,9 @@ public class ChatPanel extends JPanel
 		setupLayout();
 		setupListeners();
 	}
+	/**
+	 * Constucted the display of the Panel for the visual segment of the panel.
+	 */
 	
 	private void setupChatDisplay()
 	{
@@ -38,7 +41,9 @@ public class ChatPanel extends JPanel
 		chatDisplay.setWrapStyleWord(true);
 		chatDisplay.setLineWrap(true);
 	}
-	
+	/**
+	 * Set size requirements, and set text requirements.
+	 */
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
@@ -48,6 +53,9 @@ public class ChatPanel extends JPanel
 		this.add(chatField);
 		this.add(chatTitle);
 	}
+	/**
+	 * Set elements of the panel, and set linked the components thereof.
+	 */
 	
 	private void setupLayout()
 	{
@@ -57,8 +65,10 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, chatField, 0, SpringLayout.WEST, chatButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -12, SpringLayout.NORTH, chatButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -10, SpringLayout.SOUTH, this);
-		
 	}
+	/**
+	 * Added the constraints of the panel, linked the buttons to positions.
+	 */
 	
 	private void setupListeners()
 	{
@@ -74,5 +84,9 @@ public class ChatPanel extends JPanel
 				
 			}
 		});
+		/**
+		 * Setup and added the listeners to the panel.
+		 * Used the "ChatBotCheckers" method to check the text inserted.
+		 */
 	}
 }

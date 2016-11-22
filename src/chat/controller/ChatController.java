@@ -6,7 +6,7 @@ import chat.view.ChatFrame;
 
 public class ChatController
 {
-	private String randomTopicChecker;
+	private String randomTopicGenerator;
 	private Chatbot stupidBot;
 	private ChatViewer display;
 	private ChatFrame appFrame;
@@ -15,7 +15,9 @@ public class ChatController
 		stupidBot = new Chatbot("Unintelligent Chat Machine");
 		appFrame = new ChatFrame(this);
 	}
-	
+	/**
+	 * 
+	 */
 	public void start()
 	{
 		
