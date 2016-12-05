@@ -15,9 +15,11 @@ public class ChatController
 		stupidBot = new Chatbot("Unintelligent Chat Machine");
 		appFrame = new ChatFrame(this);
 	}
+	
 	/**
 	 * 
 	 */
+	
 	public void start()
 	{
 		

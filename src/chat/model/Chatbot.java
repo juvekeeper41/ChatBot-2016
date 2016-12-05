@@ -366,5 +366,9 @@ public class Chatbot
 			checker = true;
 		}
 		return checker;
+		/**
+		 * Method made to check if the user is leaving the app.
+		 * If true, chatbot responds accordingly.
+		 */
 	}
 }
