@@ -31,7 +31,7 @@ public class ChatPanel extends JPanel
 		setupListeners();
 	}
 	/**
-	 * Constucted the display of the Panel for the visual segment of the panel.
+	 * Constructed the display of the Panel for the visual segment of the panel.
 	 */
 	
 	private void setupChatDisplay()
