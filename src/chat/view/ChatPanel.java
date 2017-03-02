@@ -2,6 +2,8 @@ package chat.view;
 
 import javax.swing.*;
 import chat.controller.ChatController;
+import chat.controller.FileController;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +33,7 @@ public class ChatPanel extends JPanel
 		setupPanel();
 		setupLayout();
 		setupListeners();
+
 	}
 	/**
 	 * Constructed the display of the Panel for the visual segment of the panel.
@@ -54,6 +57,7 @@ public class ChatPanel extends JPanel
 		this.setLayout(baseLayout);
 		this.setBackground(Color.RED);
 		this.add(chatButton);
+		saveChatButton.setToolTipText("Put a name in the text field for a file");
 		this.add(chatDisplay);
 		this.add(chatField);
 		this.add(chatTitle);
@@ -94,6 +98,26 @@ public class ChatPanel extends JPanel
 				
 			}
 		});
+		
+		saveChatButton.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent click)
+					{
+						String fileName = chatField.getText();
+						
+						FileController.saveFile(baseController, fileName, chatDisplay.getText());
+					}
+				}
+		
+		loadsChatButton.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent click)
+					{
+						String fileName = chatField.getText() + ".txt";
+						String saved = FileController.readFile(baseController, "");
+						chatDisplay.setText(saved);
+					}
+				}
 		/**
 		 * Setup and added the listeners to the panel.
 		 * Used the "ChatBotCheckers" method to check the text inserted.
