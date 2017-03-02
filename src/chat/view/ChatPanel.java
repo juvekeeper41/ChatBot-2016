@@ -14,6 +14,7 @@ public class ChatPanel extends JPanel
 	private JTextField chatField;
 	private JButton chatButton;
 	private JLabel chatTitle;
+	private JScrollPane chatPane;
 	
 	public ChatPanel(ChatController baseController)
 	{
@@ -24,6 +25,7 @@ public class ChatPanel extends JPanel
 		chatField = new JTextField(25);
 		chatButton = new JButton("Chat with the bot");
 		chatTitle = new JLabel("Jake's Chatbot!");
+		
 		
 		setupChatDisplay();
 		setupPanel();
@@ -40,6 +42,9 @@ public class ChatPanel extends JPanel
 		chatDisplay.setEnabled(false);
 		chatDisplay.setWrapStyleWord(true);
 		chatDisplay.setLineWrap(true);
+		chatPane.setViewportView(chatDisplay);
+		chatPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		chatPane.setHorizontalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 	}
 	/**
 	 * Set size requirements, and set text requirements.
@@ -59,12 +64,15 @@ public class ChatPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatDisplay, -6, SpringLayout.NORTH, chatField);
-		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 63, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, chatDisplay, 0, SpringLayout.WEST, chatButton);
-		baseLayout.putConstraint(SpringLayout.WEST, chatField, 0, SpringLayout.WEST, chatButton);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -12, SpringLayout.NORTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatTitle, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatTitle, 152, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatDisplay, 61, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatField, 24, SpringLayout.SOUTH, chatDisplay);
+		baseLayout.putConstraint(SpringLayout.WEST, chatField, -300, SpringLayout.EAST, chatDisplay);
+		baseLayout.putConstraint(SpringLayout.EAST, chatField, 0, SpringLayout.EAST, chatDisplay);
+		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 138, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatDisplay, 16, SpringLayout.SOUTH, chatTitle);
 	}
 	/**
 	 * Added the constraints of the panel, linked the buttons to positions.
@@ -78,8 +86,10 @@ public class ChatPanel extends JPanel
 			{
 				String personWords = chatField.getText();
 				String chatbotResponse = baseController.useChatbotCheckers(personWords);
+				String currentText = chatDisplay.getText();
 				
-				chatDisplay.setText("You said: " + personWords + "\n" + "Chatbot says: " + chatbotResponse);
+				chatDisplay.setText("You said: " + personWords + "\n" + "Chatbot says: " + chatbotResponse + "/n" + currentText);
+				chatDisplay.setCaretPosition(chatDisplay.getCaretPosition());
 				chatField.setText("");
 				
 			}
