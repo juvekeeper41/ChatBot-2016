@@ -92,6 +92,12 @@ public class ChatController
 					return checkedInput;
 				}
 				
+				public void handleErrors(Exception currentException)
+				{
+					display.displayMessage("An error has occurred. Details provided next.");
+					display.displayMessage(currentException.getMessage());
+				}
+				
 				public ChatFrame getBaseFrame()
 				{
 					return appFrame;
