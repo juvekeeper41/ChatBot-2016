@@ -55,4 +55,16 @@ public class CTECTwitter
 	{
 		return null;
 	}
+	
+	private void removeEmptyText()
+	{
+		for(int index = 0; index < tweetedWords.size(); index++)
+		{
+			if(tweetedWords.get(index).trim().equals(""))
+			{
+				tweetedWords.remove(index);
+				index--;
+			}
+		}
+	}
 }
