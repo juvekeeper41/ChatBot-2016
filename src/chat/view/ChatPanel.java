@@ -84,6 +84,26 @@ public class ChatPanel extends JPanel
 				
 			}
 		});
+		
+		chatButton.addActionListener(new ActionListener()
+		{
+			
+		}
+		
+		saveChatButton.addActionListener(new ActionListener()
+		{
+			
+		}
+		
+		loadsChatButton.addActionListener(new ActionListener()
+		{
+						
+		}
+		
+		searchTwitterButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed
+		}
 		/**
 		 * Setup and added the listeners to the panel.
 		 * Used the "ChatBotCheckers" method to check the text inserted.
