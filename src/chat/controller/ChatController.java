@@ -3,6 +3,7 @@ package chat.controller;
 import chat.model.Chatbot;
 import chat.view.ChatViewer;
 import chat.view.ChatFrame;
+import chat.model.CTECTwitter;
 
 public class ChatController
 {
@@ -10,6 +11,8 @@ public class ChatController
 	private Chatbot stupidBot;
 	private ChatViewer display;
 	private ChatFrame appFrame;
+	public CTECTwitter twitterBot;
+	
 	public ChatController()
 	{
 		stupidBot = new Chatbot("Unintelligent Chat Machine");
@@ -146,8 +149,10 @@ public class ChatController
 				
 				public String searchTwitterUser(String userNameToSearch)
 				{
-					String searchResults = "";
-					searchResults = "The most popular word by user: " + userNameToSearch + ", is ";
+					String searchResults = "The most popular word by user: " + userNameToSearch + ", is ";
+					
+					searchResults += twitterBot.getMostCommonWord(userNameToSearch);
+					
 					return searchResults;
 				}
 
