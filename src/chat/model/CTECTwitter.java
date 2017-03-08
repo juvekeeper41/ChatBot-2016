@@ -119,14 +119,17 @@ public class CTECTwitter
 	
 	private void removeAllBoringWords()
 	{
+		String [] boringWords = createIgnoredWordArray();
 		for(int index = 0; index < tweetedWords.size(); index++)
 		{
-			for(String boring : createIgnoredWordArray())
-			{
-				if(tweetedWords.get(index).equalsIgnoreCase(boring))
+				for(int boringIndex = 0; boringIndex < boringWords.length; boringIndex++)
+				{
+					
+				if(tweetedWords.get(index).equalsIgnoreCase(boringWords[boringIndex]))
 				{
 					tweetedWords.remove(index);
 					index--;
+					boringIndex = boringWords.length;
 				}
 			}
 		}
