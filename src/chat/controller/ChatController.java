@@ -143,6 +143,13 @@ public class ChatController
 					
 					return randomTopic;
 				}
+				
+				public String searchTwitterUser(String userNameToSearch)
+				{
+					String searchResults = "";
+					searchResults = "The most popular word by user: " + userNameToSearch + ", is ";
+					return searchResults;
+				}
 
 
 }
