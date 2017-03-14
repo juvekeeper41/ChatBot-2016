@@ -12,6 +12,7 @@ public class ChatPanel extends JPanel
 	private SpringLayout baseLayout;
 	private JTextArea chatDisplay;
 	private JTextField chatField;
+	private JButton loadButton;
 	private JButton saveButton;
 	private JButton postButton;
 	private JButton twitterButton;
@@ -26,7 +27,19 @@ public class ChatPanel extends JPanel
 		baseLayout = new SpringLayout();
 		chatDisplay = new JTextArea(5, 25);
 		chatField = new JTextField(25);
+		loadButton = new JButton("Load");
+		baseLayout.putConstraint(SpringLayout.WEST, loadButton, 181, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, loadButton, -10, SpringLayout.SOUTH, this);
 		saveButton = new JButton("Save");
+		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, loadButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, saveButton, -6, SpringLayout.NORTH, loadButton);
+		saveButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent event) 
+			{
+				
+			}
+		});
 		postButton = new JButton("Post to Twitter");
 		twitterButton = new JButton("Check Twitter");
 		chatButton = new JButton("Chat with the bot");
@@ -55,6 +68,7 @@ public class ChatPanel extends JPanel
 		this.setLayout(baseLayout);
 		this.setBackground(Color.BLUE);
 		this.add(saveButton);
+		this.add(loadButton);
 		this.add(chatButton);
 		this.add(postButton);
 		this.add(chatDisplay);
@@ -68,19 +82,17 @@ public class ChatPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.EAST, postButton, 147, SpringLayout.WEST, chatButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, postButton, 6, SpringLayout.SOUTH, twitterButton);
-		baseLayout.putConstraint(SpringLayout.WEST, postButton, 0, SpringLayout.WEST, twitterButton);
-		baseLayout.putConstraint(SpringLayout.SOUTH, postButton, 35, SpringLayout.SOUTH, twitterButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 6, SpringLayout.SOUTH, postButton);
-		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 181, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatDisplay, 6, SpringLayout.SOUTH, chatTitle);
-		baseLayout.putConstraint(SpringLayout.NORTH, twitterButton, 6, SpringLayout.SOUTH, chatButton);
-		baseLayout.putConstraint(SpringLayout.EAST, twitterButton, -10, SpringLayout.EAST, chatButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatButton, 6, SpringLayout.SOUTH, chatField);
-		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 136, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatField, 6, SpringLayout.SOUTH, chatDisplay);
+		baseLayout.putConstraint(SpringLayout.NORTH, postButton, 6, SpringLayout.SOUTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.WEST, postButton, 94, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, postButton, -96, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, postButton, -221, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -6, SpringLayout.NORTH, chatButton);
 		baseLayout.putConstraint(SpringLayout.WEST, chatField, 0, SpringLayout.WEST, chatDisplay);
+		baseLayout.putConstraint(SpringLayout.EAST, twitterButton, 0, SpringLayout.EAST, chatDisplay);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -131, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, twitterButton, 0, SpringLayout.NORTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 36, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatDisplay, 6, SpringLayout.SOUTH, chatTitle);
 		baseLayout.putConstraint(SpringLayout.WEST, chatDisplay, 63, SpringLayout.WEST, this);
 	}
 	/**

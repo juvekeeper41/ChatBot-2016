@@ -6,9 +6,12 @@ import chat.controller.ChatController;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.Status;
+import twitter4j.GeoLocation;
 import java.util.List;
 import twitter4j.Twitter;
 import twitter4j.Paging;
+import twitter4j.Query;
+import twitter4j.QueryResult;
 
 
 public class CTECTwitter 
@@ -178,5 +181,30 @@ public class CTECTwitter
 		
 		return information;
 	}
+	
+	public String investigation()
+	{
+		String results = "";
+		
+		Query query = new Query("marathon");
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(40.587521, -111.869178), 5, Query.MILES);
+		query.setSince("2017-1-1");
+		try
+		{
+			QueryResult result = chatbotTwitter.search(query);
+			results += "Count : " + result.getTweets().size() + "\n";
+			for (Status tweet : result.getTweets())
+			{
+				results += "@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n";
+			}
+		}
+			catch (TwitterException error)
+			{
+				error.printStackTrace();
+			}
+			
+			return results;
+		}
 }
 
