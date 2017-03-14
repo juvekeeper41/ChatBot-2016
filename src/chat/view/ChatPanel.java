@@ -28,11 +28,9 @@ public class ChatPanel extends JPanel
 		chatDisplay = new JTextArea(5, 25);
 		chatField = new JTextField(25);
 		loadButton = new JButton("Load");
-		baseLayout.putConstraint(SpringLayout.WEST, loadButton, 181, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, loadButton, -10, SpringLayout.SOUTH, this);
+		
 		saveButton = new JButton("Save");
-		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, loadButton);
-		baseLayout.putConstraint(SpringLayout.SOUTH, saveButton, -6, SpringLayout.NORTH, loadButton);
+		
 		saveButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent event) 
@@ -82,6 +80,10 @@ public class ChatPanel extends JPanel
 	
 	private void setupLayout()
 	{
+		baseLayout.putConstraint(SpringLayout.WEST, loadButton, 181, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, loadButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, loadButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, saveButton, -6, SpringLayout.NORTH, loadButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, postButton, 6, SpringLayout.SOUTH, chatButton);
 		baseLayout.putConstraint(SpringLayout.WEST, postButton, 94, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, postButton, -96, SpringLayout.SOUTH, this);
