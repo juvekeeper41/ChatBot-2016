@@ -33,5 +33,29 @@ public class FileController
 			baseController.handleErrors(error);
 		}
 	}
+		
+		public static String readFile(ChatController baseController, String fileName)
+		{
+			String fileContents = "";
+			try
+			{
+				Scanner fileReader = new Scanner(new File(fileName));
+				while(fileReader.hasNextLine())
+				{
+					fileContents += fileReader.nextLine();
+				}
+				fileReader.close();
+			}
+				catch(IOException someIOError)
+				{
+					baseController.handleErrors(someIOError);
+				}
+				catch(NullPointerException fileError)
+				{
+					baseController.handleErrors(fileError);
+				}
+				
+				return fileContents;
+			}
 	
 }
